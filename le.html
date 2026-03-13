@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>马年祝福 - 最好的明飞</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: linear-gradient(135deg, #fdf2f8, #fef7fb, #fff8e1);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "微软雅黑", "华文行楷", sans-serif;
+            overflow: hidden;
+        }
+
+        /* 主容器 */
+        .blessing-box {
+            text-align: center;
+            padding: 50px 80px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 0 60px rgba(251, 191, 36, 0.6);
+            position: relative;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* 顶部标题 */
+        .top-title {
+            font-size: 40px;
+            color: #d97706;
+            margin-bottom: 15px;
+            text-shadow: 1px 1px 3px #fbbf24;
+            animation: shine 3s ease-in-out infinite alternate;
+        }
+
+        /* 明飞专属称呼 */
+        .name-card {
+            font-size: 48px;
+            color: #b45309;
+            margin: 20px 0;
+            font-weight: bold;
+            position: relative;
+            animation: bounce 2s ease-in-out infinite;
+        }
+
+        /* 名字下方装饰 */
+        .name-card::after {
+            content: "✨";
+            position: absolute;
+            right: -40px;
+            top: -10px;
+            animation: spin 3s linear infinite;
+        }
+
+        .name-card::before {
+            content: "✨";
+            position: absolute;
+            left: -40px;
+            top: -10px;
+            animation: spin 3s linear infinite reverse;
+        }
+
+        /* 祝福语列表 */
+        .blessing-list {
+            margin-top: 30px;
+            font-size: 28px;
+            color: #1e40af;
+            line-height: 1.8;
+        }
+
+        .blessing-item {
+            margin: 10px 0;
+            animation: fadeInUp 1s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* 逐个出现的延迟效果 */
+        .blessing-item:nth-child(1) { animation-delay: 0.3s; }
+        .blessing-item:nth-child(2) { animation-delay: 0.6s; }
+        .blessing-item:nth-child(3) { animation-delay: 0.9s; }
+
+        /* 装饰元素 - 小马 */
+        .horse-icon {
+            position: absolute;
+            font-size: 50px;
+            animation: run 10s linear infinite;
+            top: -20px;
+        }
+
+        /* 装饰元素 - 爱心/健康图标 */
+        .decor-icon {
+            position: absolute;
+            font-size: 30px;
+            animation: floatSmall 3s ease-in-out infinite;
+        }
+
+        /* 关键帧动画 */
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        @keyframes shine {
+            0% { text-shadow: 1px 1px 3px #fbbf24; }
+            100% { text-shadow: 1px 1px 10px #f59e0b, 0 0 20px #fbbf24; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes fadeInUp {
+            0% { 
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% { 
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes run {
+            0% {
+                left: -80px;
+                transform: scaleX(1);
+            }
+            48% { transform: scaleX(1); }
+            50% {
+                left: calc(100% + 30px);
+                transform: scaleX(1);
+            }
+            52% { transform: scaleX(-1); }
+            100% {
+                left: -80px;
+                transform: scaleX(-1);
+            }
+        }
+
+        @keyframes floatSmall {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(10deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="blessing-box">
+        <h2 class="top-title">🐴 马年大吉 🐴</h2>
+        <div class="name-card">最好的明飞</div>
+        <div class="blessing-list">
+            <div class="blessing-item">🧡 身体健康 平安顺遂</div>
+            <div class="blessing-item">💖 开开心心 每一天</div>
+            <div class="blessing-item">🌟 马年行运 万事顺心</div>
+        </div>
+        <div class="horse-icon">🐎</div>
+        <!-- 随机装饰图标 -->
+        <div class="decor-icon" style="left: 20px; bottom: 20px; animation-delay: 0s;">❤️</div>
+        <div class="decor-icon" style="right: 20px; top: 20px; animation-delay: 0.5s;">💪</div>
+        <div class="decor-icon" style="left: 40px; top: 40px; animation-delay: 1s;">😊</div>
+    </div>
+
+    <script>
+        // 动态添加更多漂浮装饰，增强氛围
+        function addDecorIcons() {
+            const box = document.querySelector('.blessing-box');
+            const icons = ['✨', '🍀', '🎊', '🥳', '💰'];
+            const count = 8;
+
+            for (let i = 0; i < count; i++) {
+                const icon = document.createElement('div');
+                icon.className = 'decor-icon';
+                icon.textContent = icons[Math.floor(Math.random() * icons.length)];
+                // 随机位置和延迟
+                icon.style.left = `${Math.random() * 100}%`;
+                icon.style.top = `${Math.random() * 100}%`;
+                icon.style.animationDelay = `${Math.random() * 3}s`;
+                icon.style.animationDuration = `${3 + Math.random() * 2}s`;
+                box.appendChild(icon);
+            }
+        }
+
+        // 页面加载后生成装饰
+        window.onload = () => {
+            addDecorIcons();
+        };
+    </script>
+</body>
+</html>
