@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张佳锋 马年大吉祝福</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: "微软雅黑", "华文琥珀", sans-serif;
+            background: linear-gradient(135deg, #ffd700, #ff8c00, #e63946);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        /* 祝福容器 */
+        .blessing-container {
+            position: relative;
+            text-align: center;
+            padding: 40px;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 20px;
+            box-shadow: 0 0 50px rgba(255, 215, 0, 0.8);
+            animation: containerFloat 3s ease-in-out infinite;
+        }
+
+        /* 容器浮动动画 */
+        @keyframes containerFloat {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* 姓名样式 */
+        .name {
+            font-size: 60px;
+            color: #d62828;
+            text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700;
+            margin-bottom: 20px;
+            animation: nameGlow 2s ease-in-out infinite alternate;
+        }
+
+        /* 姓名发光动画 */
+        @keyframes nameGlow {
+            from { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+            to { text-shadow: 0 0 20px #ffd700, 0 0 30px #ffd700, 0 0 40px #ffd700; }
+        }
+
+        /* 祝福语样式 */
+        .blessings {
+            font-size: 32px;
+            color: #003049;
+            line-height: 1.8;
+            margin: 20px 0;
+            opacity: 0;
+            animation: blessingFade 1s ease-in-out forwards;
+            animation-delay: 1s;
+        }
+
+        /* 祝福语渐入动画 */
+        @keyframes blessingFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* 马年装饰 */
+        .horse-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            color: #ffd700;
+            text-shadow: 0 0 15px #d62828;
+            animation: horseRotate 5s ease-in-out infinite;
+        }
+
+        /* 小马旋转动画 */
+        @keyframes horseRotate {
+            0%, 100% { transform: rotate(-10deg); }
+            50% { transform: rotate(10deg); }
+        }
+
+        /* 发财特效 */
+        .fortune {
+            position: absolute;
+            font-size: 24px;
+            color: #ffd700;
+            opacity: 0;
+            animation: fortuneFly 6s linear infinite;
+        }
+
+        /* 发财文字漂浮动画 */
+        @keyframes fortuneFly {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) rotate(0deg);
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blessing-container">
+        <div class="name">张佳锋</div>
+        <div class="horse-icon">🐴</div>
+        <div class="blessings">
+            事业顺遂 🚀<br>
+            身体健康 💪<br>
+            马年大吉 🎉<br>
+            一路发发发 💰
+        </div>
+    </div>
+
+    <script>
+        // 动态生成发财漂浮文字
+        function createFortuneText() {
+            const fortuneTexts = ['发', '发发', '发发发', '888', '💰'];
+            const container = document.body;
+            
+            // 随机创建漂浮文字
+            setInterval(() => {
+                const fortune = document.createElement('div');
+                fortune.className = 'fortune';
+                fortune.textContent = fortuneTexts[Math.floor(Math.random() * fortuneTexts.length)];
+                
+                // 随机位置
+                const left = Math.random() * 100;
+                fortune.style.left = `${left}vw`;
+                fortune.style.bottom = '0';
+                
+                // 随机动画延迟
+                fortune.style.animationDelay = `${Math.random() * 5}s`;
+                
+                container.appendChild(fortune);
+                
+                // 移除过期元素
+                setTimeout(() => {
+                    fortune.remove();
+                }, 6000);
+            }, 500);
+        }
+
+        // 启动动画
+        window.onload = createFortuneText;
+    </script>
+</body>
+</html>
