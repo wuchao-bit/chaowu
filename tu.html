@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小朋友跳舞动画</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #f8f9fa;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        /* 跳舞容器 */
+        .dance-container {
+            position: relative;
+            width: 400px;
+            height: 500px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e8f4f8, #fdf2f8);
+            border-radius: 20px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        /* 小朋友图片样式 */
+        .kid-img {
+            width: 300px;
+            height: auto;
+            position: absolute;
+            z-index: 2;
+            /* 核心跳舞动画 */
+            animation: dance 2s ease-in-out infinite;
+        }
+
+        /* 背景装饰 - 音符 */
+        .note {
+            position: absolute;
+            font-size: 24px;
+            color: #e53e3e;
+            opacity: 0.8;
+            animation: noteFloat 3s ease-in-out infinite;
+        }
+
+        /* 跳舞关键帧：左右摇摆+上下跳动+轻微旋转 */
+        @keyframes dance {
+            0% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            25% {
+                transform: translate(-15px, -10px) rotate(-5deg);
+            }
+            50% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+            75% {
+                transform: translate(15px, -10px) rotate(5deg);
+            }
+            100% {
+                transform: translate(0, 0) rotate(0deg);
+            }
+        }
+
+        /* 音符漂浮动画 */
+        @keyframes noteFloat {
+            0% {
+                transform: translateY(50px) rotate(0deg);
+                opacity: 0;
+            }
+            50% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-50px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="dance-container">
+        <!-- 替换成你的图片链接/本地路径 -->
+        <img src="C:\Users\issuser\Desktop\图图.jpg" alt="小朋友" class="kid-img">
+        
+        <!-- 装饰音符 -->
+        <div class="note" style="left: 50px; top: 100px; animation-delay: 0s;">🎵</div>
+        <div class="note" style="left: 100px; top: 80px; animation-delay: 0.5s;">🎶</div>
+        <div class="note" style="right: 50px; top: 120px; animation-delay: 1s;">🎵</div>
+        <div class="note" style="right: 80px; top: 90px; animation-delay: 1.5s;">🎶</div>
+        <div class="note" style="left: 150px; top: 50px; animation-delay: 2s;">🎵</div>
+    </div>
+
+    <script>
+        // 动态生成更多音符，增强跳舞氛围
+        function createMoreNotes() {
+            const container = document.querySelector('.dance-container');
+            const noteCount = 8;
+            const notes = ['🎵', '🎶', '🎷', '🥁', '🎸'];
+
+            for (let i = 0; i < noteCount; i++) {
+                const note = document.createElement('div');
+                note.className = 'note';
+                note.textContent = notes[Math.floor(Math.random() * notes.length)];
+                // 随机位置、大小和动画时长
+                note.style.left = `${Math.random() * 100}%`;
+                note.style.top = `${Math.random() * 100}%`;
+                note.style.fontSize = `${16 + Math.random() * 16}px`;
+                note.style.animationDuration = `${3 + Math.random() * 2}s`;
+                note.style.animationDelay = `${Math.random() * 3}s`;
+                container.appendChild(note);
+            }
+        }
+
+        // 页面加载后生成音符
+        window.onload = () => {
+            createMoreNotes();
+        };
+    </script>
+</body>
+</html>
